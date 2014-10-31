@@ -1,6 +1,11 @@
 import subprocess
+import os
+
 def main():
-	subprocess.Popen("python34 wt_finder",shell=True)
+	if(os.name == "nt"):
+		p = subprocess.Popen("python wt_finder.py",shell=True)
+	else:
+		p = subprocess.Popen("python34 wt_finder.py",shell=True)
 	p.wait()
 
 
