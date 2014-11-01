@@ -35,11 +35,16 @@ if(len(arguments) > 1):
 		str+=" "+(s)
 	query = nltk.word_tokenize(str)
 	pos_tagged_query = nltk.pos_tag(query)
-	print(pos_tagged_query)
+	print(pos_tagged_query, end="")
 	qtype = getType(pos_tagged_query)
+	
+	'''
+	uncomment when you can finish the if statement
+
 	if(qtype == __QTYPE__DEFAULT ):
 		#adandladas
-		print("default: ")
+		print("default: ", end="")
 	elif (qtype == __QTYPE__ATTR):
 		# get question attribute	
-		print("search for attribute")
+		print("search for attribute", end="")
+	'''

@@ -11,16 +11,33 @@ and the queries will be answered as they are finised processing.
 
 import subprocess
 import os
+import threading
 
+def invoke_on_query(query):
+	print (query)
+	if(os.name == "nt"):		
+		p = subprocess.Popen("python wt_init_parse.py " +query, shell=True, stdout=subprocess.PIPE)
+		out, err = p.communicate()
+	else:
+		p = subprocess.Popen("python3.4 wt_init_parse.py "+query,shell=True, stdout=subprocess.PIPE)
+		out, err = p.communicate()
+	p.wait()
+	print_answer(out, query)
+	
+def print_answer(answer, query):
+	print("\n.: we conclude for query \""+str(query)+'"  ->  ' + str(answer))
 
 def main():
 	print("\n.: ",end="")
-	query = input()
-	if(os.name == "nt"):		
-		p = subprocess.Popen("python wt_init_parse.py " +query, shell=True)
-	else:
-		p = subprocess.Popen("python3.4 wt_init_parse.py "+query,shell=True)
-	p.wait()
+	while(1):
+		query = input()
+		t = threading.Thread(target = invoke_on_query, args = [query])
+		t.daemon = True
+		t.start()
+		print("\n.: ",end="")
+		
+		
+	
 
 if(__name__ == "__main__"):
 	main()
