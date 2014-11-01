@@ -18,9 +18,13 @@ import nltk
 
 arguments = sys.argv
 
-__TYPE__DEFAULT = 0x111
-__TYPE__Q_ATTR = 0x112
-__TYPE__Q_PLACE = 0x113
+__QTYPE__DEFAULT = 0x111
+__QTYPE__ATTR = 0x112
+
+def getType(tagged):
+	qtype = __QTYPE__DEFAULT
+	#here comes type sorting 
+	return qtype
 
 
 if(len(arguments) > 1):
@@ -32,17 +36,10 @@ if(len(arguments) > 1):
 	query = nltk.word_tokenize(str)
 	pos_tagged_query = nltk.pos_tag(query)
 	print(pos_tagged_query)
-	type = getType(pos_tagged_query)
-	if(type == __TYPE__DEFAULT ):
-
-	else if (type == __TYPE__Q_ATTR):
+	qtype = getType(pos_tagged_query)
+	if(qtype == __QTYPE__DEFAULT ):
+		#adandladas
+		print("default: ")
+	elif (qtype == __QTYPE__ATTR):
 		# get question attribute	
-	else if (type == __TYPE__Q_PLACE):
-
-
-def getType(pos_tagged_query)
-	type = __TYPE__DEFAULT
-	
-	#here comes type sorting 
-
-	return type
+		print("search for attribute")
